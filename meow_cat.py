@@ -22,7 +22,10 @@ discord_token="xxx" #ここ変えるだけ
 
 @client.event
 async def on_message(message)
-
+#ここ重要
+    if message.author.bot or message.author == client.user:
+        return
+    
 #特別(sou7さんのGreeting bot用)
     if message.author.id == 394876010438328321:
         if message.content == "はにゃー！":
@@ -165,7 +168,7 @@ async def on_message(message)
         embed=discord.Embed(title=choice,description=(),color=discord.Color(random.randint(0,0xFFFFFF)))
         embed.set_author(name="剛田武",icon_url="http://makisimamu.xyz/wp-content/uploads/2017/01/aa-109.png")
         await message.channel.send(embed=embed)
-    # elif message.content == "ウイルスかかった": #このご時世ちょっとやめとこ。
+    # elif message.content == "ウイルスかかった": #これは、、、このご時世ちょっとやめとこ。
         # await message.channel.send("あなたがかかったのはAのウイルスですか？それともBのウイルスですか？\n正直なあなたには両方あげましょう")
     elif message.content == "熱盛":
         c=["<:atsumori:584609302199795723>","失礼しました。熱盛と出てしまいました。"] #熱盛の絵文字、各自でご用意ください。
