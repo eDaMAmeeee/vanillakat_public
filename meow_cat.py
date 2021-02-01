@@ -17,6 +17,10 @@ time=datetime.now()
 hour=time.h
 min=time.minute
 
+#メンション防止関数
+def clean_content(message):
+    return discord.utils.escape_markdown(discord.utils.escape_mentions(message))
+
 client=discord.Client()
 discord_token="xxx" #ここ変えるだけ
 
@@ -216,7 +220,7 @@ async def on_message(message)
         await message.channel.send("駐車場と言えばだいぶ前に某飲食店の「お客様の声」に、駐車場を増やして欲しいです、と書いておいた。")
         await message.channel.send("後日その店を訪れると、店のあった場所に広い駐車場ができていた。")
     elif message.content == "チャンネルトピックは？":
-        await message.channel.send("```{}```".format(message.channel.topic))
+        await message.channel.send("```{}```".format(clean_content(message.channel.topic)))
     elif message.content == "LOL":
         await message.channel.send("🇱 🇴 🇱")
     elif message.content == "デブ":
